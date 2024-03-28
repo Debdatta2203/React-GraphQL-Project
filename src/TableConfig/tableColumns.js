@@ -4,7 +4,19 @@ export const tableColumns = [
         accessor: 'id',
     }, 
     {
-        Header: 'Name',
-        accessor: 'name',
+        Header: 'Title',
+        accessor: 'title',
+    },
+    {
+        Header: 'Description',
+        accessor: 'description',
+    },
+    {
+        Header: 'Episodes',
+        accessor: 'episodes',
+    },
+    {
+        Header: 'Status',
+        accessor: 'status',
     }
 ]

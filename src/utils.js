@@ -3,7 +3,10 @@ export const handleTableData = (data) => {
     data?.map((row) => 
         dataArray.push({
             id: row?.id,
-            name: row?.title.romaji,
+            title: row?.title.english,
+            description: row?.description,
+            episodes: row?.episodes,
+            status: row?.status
         })
     )
     return dataArray;

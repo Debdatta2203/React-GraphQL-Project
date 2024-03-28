@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { options, url } from "../apiConfig";
-import { tableColumns } from "../../TableConfig/tableColumns";
+import React, { useEffect, useState } from "react";
+import { useQuery } from '@apollo/client';
+import { FILMS_QUERY, getAnimeListQuery, options, url } from "../apiConfig";
 import { handleTableData } from "../../utils";
 import CustomTable from "./CustomTable";
+import { client } from "../../apolloClient";
 
 const AnimeTable = () => {
     // states
@@ -24,27 +25,24 @@ const AnimeTable = () => {
 
     const fetchList = async() => {
         try {
-            const response = await fetch(url, options)
-            .then(handleResponse)
-            .then((resp) => {
-                setTableData(handleTableData(resp?.data?.Page?.media));
-            });
+            const { data, errors } = await client.query({
+                    query: getAnimeListQuery,
+                    variables: {
+                    page: 1,
+                    perPage: 100,
+                    },
+                });
+                setTableData(handleTableData(data?.Page?.media));
         } catch(err) {
             console.log(err);
         }
     };
-
-    const handleResponse = (response) => {
-        return response.json().then(function (json) {
-            return response.ok ? json : Promise.reject(json);
-        });
-    };
-
+    
     // console.log("VideoPlayer FE ", tableData);
 
     return (
         <div>
-            <h1>Anime List</h1>
+            <h1>Media List</h1>
             {
                 !loading
                 ? <CustomTable tableData={tableData} />

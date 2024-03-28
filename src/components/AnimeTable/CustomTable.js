@@ -16,7 +16,7 @@ const CustomTable = ({ tableData }) => {
     } = useTable({ columns, data: tableData, initialState: {
         sortBy: [
             {
-                id: 'name',
+                id: 'title',
                 desc: false
             }
         ]
