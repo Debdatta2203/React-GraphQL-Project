@@ -44,15 +44,12 @@ const AnimeTable = () => {
 
     return (
         <div>
+            <h1>Anime List</h1>
             {
                 !loading
                 ? <CustomTable tableData={tableData} />
                 : <div>Loading...</div>
             }
-           {/* <Table tableData={tableData} /> */}
-           {/* <table>
-                {tableData?.ea}
-           </table> */}
         </div>
     );
 };
