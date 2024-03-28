@@ -1,3 +1,15 @@
+.header {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -8,6 +20,13 @@ th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    font-size: 14px;
+    background-color: #dddddd;
+}
+
+table td {
+    background-color: #fff !important;
+    font-size: 12px !important;
 }
 
 table tbody tr:hover {
@@ -15,6 +34,9 @@ table tbody tr:hover {
 }
 
 .searchContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin: 10px 0 20px;
 }
 
@@ -22,7 +44,35 @@ table tbody tr:hover {
     border: 1px solid #dddddd;
 }
 
+.searchContainer select {
+    border: 1px solid #dddddd;
+}
+
 label {
     font-size: 12px;
     margin-right: 10px;
+    margin-left: 10px;
+}
+
+.clearFilter {
+    color: red;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 30px;
+    background-color: #dddddd;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 780px) {
+    .searchContainer {
+        flex-wrap: wrap;
+    }
+
+    .searchContainer label {
+        margin-left: 0px !important;
+        margin-top: 10px;
+        width: 3.6rem;
+        display: inline-block;
+    }
 }

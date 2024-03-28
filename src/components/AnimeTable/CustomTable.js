@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
-import { useTable, useGlobalFilter, useSortBy } from "react-table";
+import { useTable, useGlobalFilter, useSortBy, useFilters } from "react-table";
 import { tableColumns } from "../../TableConfig/tableColumns";
 import "./style.css";
+import TableFilter from "./TableFilter";
 
-const CustomTable = ({ tableData }) => {
+const CustomTable = ({ tableData, filters, handleFilterChange, handleClearFilter }) => {
     const columns = useMemo(() => tableColumns, []);
     const { 
         getTableProps,
@@ -12,27 +13,28 @@ const CustomTable = ({ tableData }) => {
         rows,
         state,
         setGlobalFilter,
+        preGlobalFilteredRows,
         prepareRow,
-    } = useTable({ columns, data: tableData, initialState: {
+    } = useTable({ columns, data: tableData,
+        initialState: {
         sortBy: [
             {
                 id: 'title',
                 desc: false
             }
         ]
-    } }, useGlobalFilter, useSortBy);
+    } }, useGlobalFilter, useFilters, useSortBy);
     const { globalFilter } = state
 
     return (
         <div>
-            <div className="searchContainer">
-                <label>Search</label>
-                <input
-                    type="text"
-                    value={globalFilter || ''}
-                    onChange={(e) => setGlobalFilter(e.target.value)}
-                />
-            </div>
+            <TableFilter
+                globalFilter={globalFilter}
+                setGlobalFilter={(value) => setGlobalFilter(value)}
+                filters={filters}
+                handleFilterChange={handleFilterChange}
+                handleClearFilter={handleClearFilter}
+            />
             <table {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
@@ -44,7 +46,7 @@ const CustomTable = ({ tableData }) => {
                                         {column?.isSorted
                                             ? column.isSortDesc
                                                 ?' 🔽'
-                                                : '🔼'
+                                                : ' 🔼'
                                             : ""
                                         }
                                     </span>
