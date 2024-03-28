@@ -13,7 +13,14 @@ const CustomTable = ({ tableData }) => {
         state,
         setGlobalFilter,
         prepareRow,
-    } = useTable({ columns, data: tableData }, useGlobalFilter, useSortBy);
+    } = useTable({ columns, data: tableData, initialState: {
+        sortBy: [
+            {
+                id: 'name',
+                desc: false
+            }
+        ]
+    } }, useGlobalFilter, useSortBy);
     const { globalFilter } = state
 
     return (
@@ -31,7 +38,7 @@ const CustomTable = ({ tableData }) => {
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
-                                <th {...column.getHeaderProps()}>
+                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                                     {column.render('Header')}
                                     <span>
                                         {column?.isSorted
