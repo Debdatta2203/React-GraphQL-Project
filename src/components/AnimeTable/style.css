@@ -1,0 +1,28 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+table tbody tr:hover {
+    background-color: #dddddd;
+}
+
+.searchContainer {
+    margin: 10px 0 20px;
+}
+
+.searchContainer input {
+    border: 1px solid #dddddd;
+}
+
+label {
+    font-size: 12px;
+    margin-right: 10px;
+}
