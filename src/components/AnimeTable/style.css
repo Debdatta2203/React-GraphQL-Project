@@ -42,10 +42,12 @@ table tbody tr:hover {
 
 .searchContainer input {
     border: 1px solid #dddddd;
+    border-radius: 5px;
 }
 
 .searchContainer select {
     border: 1px solid #dddddd;
+    border-radius: 5px;
 }
 
 label {
