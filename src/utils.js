@@ -10,4 +10,4 @@ export const handleTableData = (data) => {
         })
     )
     return dataArray;
-}
+};

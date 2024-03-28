@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from '@apollo/client';
+import { AppBar, Toolbar } from '@mui/material';
 import CircularProgress from "@mui/material/CircularProgress";
 import { getAnimeListQuery } from "../apiConfig";
 import { handleTableData } from "../../utils";
@@ -41,7 +41,6 @@ const AnimeTable = () => {
                     perPage: 100,
                     },
                 });
-                console.log("VideoPlayer FE ", data);
                 setTableData(handleTableData(data?.Page?.media));
         } catch(err) {
             console.log(err);
@@ -87,12 +86,21 @@ const AnimeTable = () => {
 
     return (
         <div>
-            <div className="header">
-                Media List
-            </div>
+            
+            <AppBar position="fixed" color="primary">
+                <Toolbar>
+                    <div className="header">
+                        Media List
+                    </div>
+                </Toolbar>
+            </AppBar>
             {
                 !loading
-                ? <CustomTable tableData={tableData} filters={filters} handleFilterChange={handleFilterChange} handleClearFilter={handleClearFilter} />
+                ? (
+                    <div className="AppBody">
+                        <CustomTable tableData={tableData} filters={filters} handleFilterChange={handleFilterChange} handleClearFilter={handleClearFilter} />
+                    </div>
+                )
                 : (
                     <div className="loader">
                         <CircularProgress />
